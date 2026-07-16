@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Do You Know Dae?</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-body{font-family:'Press Start 2P',system-ui}
-.glow-cyan{text-shadow:0 0 15px #00ffff,0 0 30px #00ffff;color:#00ffff}
-.particle{position:absolute;width:5px;height:5px;background:#00ffff;border-radius:50%;box-shadow:0 0 8px #00ffff;animation:float 10s infinite linear}
-@keyframes float{0%{transform:translateY(120vh) rotate(0deg);opacity:.7}100%{transform:translateY(-100vh) rotate(1080deg);opacity:0}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do You Know Dae?</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    body { font-family: 'Press Start 2P', system-ui; }
+    .glow-cyan { text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; color: #00ffff; }
+    .particle { position: absolute; width: 5px; height: 5px; background: #00ffff; border-radius: 50%; box-shadow: 0 0 8px #00ffff; animation: float 10s infinite linear; }
+    @keyframes float { 0% { transform: translateY(120vh) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(-100vh) rotate(1080deg); opacity: 0; } }
+  </style>
 </head>
 <body class="bg-black text-white min-h-screen overflow-hidden">
 
-<audio id="bg-music" loop><source src="https://audio.com/amri-arkam/audio/cartoon-daniel-levi-jeja-on-on-feat-daniel-levi-ncs-release" type="audio/mpeg"></audio>
+<audio id="bg-music" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/01/24/audio_2b5e5d5f5f.mp3" 
+    type="audio/mpeg">
+</audio>
 
 <div id="start-screen" class="flex flex-col items-center justify-center min-h-screen relative">
   <div id="particles" class="absolute inset-0 pointer-events-none"></div>
   <h1 class="text-6xl md:text-[5.5rem] font-bold mb-6 tracking-[4px] text-center leading-none">DO YOU KNOW<br><span class="glow-cyan">DAE</span>?</h1>
   <div class="flex gap-6">
     <button onclick="startQuiz()" class="px-16 py-8 bg-cyan-400 hover:bg-cyan-300 text-black text-3xl font-bold rounded-2xl transition-all active:scale-95 shadow-[0_0_40px_#22d3ee]">PUSH START</button>
-    <button onclick="toggleMusic()" id="music-btn" class="px-6 py-8 bg-zinc-800 hover:bg-zinc-700 text-cyan-400 text-xl font-bold rounded-2xl transition-all">🔊 MUSIC</button>
+    <button onclick="toggleMusic()" id="music-btn" class="px-6 py-8 bg-zinc-800 hover:bg-zinc-700 text-cyan-400 text-xl font-bold rounded-2xl transition-all">⏸️ PAUSE</button>
   </div>
 </div>
 
@@ -49,108 +52,154 @@ body{font-family:'Press Start 2P',system-ui}
 
 <script>
 const allQuestions = [
-  {q:"When is Dae's birthday?",a:"June 26 2008",opts:["June 26 2008","July 15 2007","May 3 2009","April 20 2008"]},
-  {q:"Which female body part Dae like the most?",a:"all of the above (it was a trick question)",opts:["Thighs","all of the above (it was a trick question)","Stomach","Face"]},
-  {q:"What's Dae's favorite color?",a:"green",opts:["blue","green","black","red"]},
-  {q:"What's Dae's favorite food?",a:"Mac n cheese",opts:["Mac n cheese","Fried chicken","Pizza","Tacos"]},
-  {q:"What's Dae's favorite movie or show?",a:"my girl",opts:["my girl","The Office","Inception","Naruto"]},
-  {q:"What's Dae's middle name?",a:"dominique",opts:["dominique","Michael","Andre","Jamal"]},
-  {q:"What year was Dae born?",a:"2008",opts:["2008","2007","2009","2010"]},
-  {q:"What's Dae's favorite sport?",a:"Basketball",opts:["Basketball","Football","Soccer","Gaming"]},
-  {q:"What's Dae's shoe size?",a:"9 1/2",opts:["9 1/2","10","8","11"]},
-  {q:"What's Dae's favorite music artist or genre?",a:"don’t have one",opts:["don’t have one","Rap","R&B","Trap"]},
-  {q:"What's Dae's dream job?",a:"idk",opts:["idk","Software Engineer","Athlete","Streamer"]},
-  {q:"What's Dae's favorite video game?",a:"rainbow 6 siege",opts:["rainbow 6 siege","Fortnite","Call of Duty","2K"]},
-  {q:"What's Dae's biggest pet peeve?",a:"wanna be main characters",opts:["wanna be main characters","Slow walkers","Liars","Bad drivers"]},
-  {q:"What's Dae's favorite drink?",a:"water",opts:["water","Soda","Juice","Energy drink"]},
-  {q:"What's one thing Dae can't live without?",a:"el cinco",opts:["el cinco","His phone","Food","Sleep"]},
-  {q:"What's Dae's favorite season?",a:"autumn",opts:["autumn","Summer","Winter","Spring"]},
-  {q:"What's Dae's zodiac sign?",a:"cancer",opts:["cancer","Leo","Scorpio","Gemini"]},
-  {q:"What's Dae's favorite holiday?",a:"Christmas",opts:["Christmas","Halloween","Thanksgiving","4th of July"]},
-  {q:"What's a weird habit Dae has?",a:"masterbaiting",opts:["masterbaiting","Biting nails","Talking to self","Cracking knuckles"]},
-  {q:"What's Dae's favorite animal?",a:"elephants",opts:["elephants","Lions","Dogs","Sloths"]},
-  {q:"What's Dae's go-to fast food?",a:"chickenfila",opts:["chickenfila","McDonalds","Wendys","Taco Bell"]},
-  {q:"What's Dae's favorite meme or inside joke?",a:"my bad og",opts:["my bad og","Doge","This is fine","Spongebob"]},
-  {q:"How tall is Dae?",a:"5’9",opts:["5’9","6’0","5’7","5’11"]},
-  {q:"What's Dae's favorite school subject?",a:"math",opts:["math","History","English","Gym"]},
-  {q:"What's one place Dae wants to visit?",a:"any Western Africa beach",opts:["any Western Africa beach","Paris","NYC","Tokyo"]},
-  {q:"What's Dae's favorite snack?",a:"hot fries",opts:["hot fries","Doritos","Skittles","Popcorn"]},
-  {q:"What's Dae's biggest fear?",a:"hitting females",opts:["hitting females","Spiders","Heights","Failure"]},
-  {q:"What's a celebrity Dae crushes on?",a:"non",opts:["non","Rihanna","Zendaya","Cardi B"]},
-  {q:"What's Dae's favorite app on his phone?",a:"X",opts:["X","Instagram","TikTok","Snapchat"]},
-  {q:"What's Dae's favorite emoji?",a:"😭",opts:["😭","😂","🔥","💀"]},
-  {q:"What's one skill Dae's proud of?",a:"coding",opts:["coding","Basketball","Cooking","Dancing"]},
-  {q:"What's Dae's favorite way to relax?",a:"masterbaiting",opts:["masterbaiting","Gaming","Music","Sleep"]},
-  {q:"What's a nickname people call Dae?",a:"dae",opts:["dae","Big D","King","Bro"]},
-  {q:"What's Dae's favorite ice cream flavor?",a:"Oreo",opts:["Oreo","Chocolate","Vanilla","Strawberry"]},
-  {q:"What's one goal Dae has for next year?",a:"get more money",opts:["get more money","Travel","Get fit","Learn guitar"]},
-  {q:"What's Dae's favorite book?",a:"if only I had told her",opts:["if only I had told her","Atomic Habits","Rich Dad","The Alchemist"]},
-  {q:"What's something Dae's really good at?",a:"self sabotaging",opts:["self sabotaging","Gaming","Math","Talking"]},
-  {q:"What's Dae's favorite outfit style?",a:"lazy sweat pants n crocs",opts:["lazy sweat pants n crocs","Streetwear","Suits","Athletic"]},
-  {q:"What's one thing that always makes Dae laugh?",a:"that one YouTube video",opts:["that one YouTube video","Memes","Friends","Standup"]},
-  {q:"What's Dae's favorite time of day?",a:"nights",opts:["nights","Morning","Afternoon","Evening"]},
-  {q:"What's a talent Dae has?",a:"Clitorovaginal Neuropleasure Specialist",opts:["Clitorovaginal Neuropleasure Specialist","Coding","Basketball","Drawing"]},
-  {q:"What's Dae's dream car?",a:"bmw",opts:["bmw","Lamborghini","Tesla","Mustang"]},
-  {q:"What's something Dae hates doing?",a:"helping people when they don’t try they self first",opts:["helping people when they don’t try they self first","Cleaning","Waking up early","Math"]},
-  {q:"What's Dae's favorite social media?",a:"instagram",opts:["instagram","X","TikTok","Snap"]},
-  {q:"What's one fact about Dae's family?",a:"im the first person with a diploma in my family",opts:["im the first person with a diploma in my family","Big family","Only child","Has 5 siblings"]},
-  {q:"What's Dae's favorite memory from childhood?",a:"8th grade year",opts:["8th grade year","First bike","Family trips","Sports"]},
-  {q:"What's Dae's spirit animal?",a:"sloth",opts:["sloth","Lion","Wolf","Eagle"]},
-  {q:"What's one thing Dae's surprisingly bad at?",a:"reading the room",opts:["reading the room","Math","Sports","Cooking"]},
-  {q:"What's Dae's favorite quote or motto?",a:"horses don’t stop they keep going",opts:["horses don’t stop they keep going","Stay hungry","Hustle","No pain no gain"]},
-  {q:"What's the one question everyone always asks Dae?",a:"are you slow",opts:["are you slow","How old are you","Where you from","You good?"]}
+  {q: "When is Dae's birthday?", a: "June 26 2008", opts: ["June 26 2008", "July 15 2007", "May 3 2009", "April 20 2008"]},
+  {q: "Which female body part Dae like the most?", a: "all of the above (it was a trick question)", opts: ["Thighs", "all of the above (it was a trick question)", "Stomach", "Face"]},
+  {q: "What's Dae's favorite color?", a: "green", opts: ["blue", "green", "black", "red"]},
+  {q: "What's Dae's favorite food?", a: "Mac n cheese", opts: ["Mac n cheese", "Fried chicken", "Pizza", "Tacos"]},
+  {q: "What's Dae's favorite movie or show?", a: "my girl", opts: ["my girl", "The Office", "Inception", "Naruto"]},
+  {q: "What's Dae's middle name?", a: "dominique", opts: ["dominique", "Michael", "Andre", "Jamal"]},
+  {q: "What year was Dae born?", a: "2008", opts: ["2008", "2007", "2009", "2010"]},
+  {q: "What's Dae's favorite sport?", a: "Basketball", opts: ["Basketball", "Football", "Soccer", "Gaming"]},
+  {q: "What's Dae's shoe size?", a: "9 1/2", opts: ["9 1/2", "10", "8", "11"]},
+  {q: "What's Dae's favorite music artist or genre?", a: "don’t have one", opts: ["don’t have one", "Rap", "R&B", "Trap"]},
+  {q: "What's Dae's dream job?", a: "idk", opts: ["idk", "Software Engineer", "Athlete", "Streamer"]},
+  {q: "What's Dae's favorite video game?", a: "rainbow 6 siege", opts: ["rainbow 6 siege", "Fortnite", "Call of Duty", "2K"]},
+  {q: "What's Dae's biggest pet peeve?", a: "wanna be main characters", opts: ["wanna be main characters", "Slow walkers", "Liars", "Bad drivers"]},
+  {q: "What's Dae's favorite drink?", a: "water", opts: ["water", "Soda", "Juice", "Energy drink"]},
+  {q: "What's one thing Dae can't live without?", a: "el cinco", opts: ["el cinco", "His phone", "Food", "Sleep"]},
+  {q: "What's Dae's favorite season?", a: "autumn", opts: ["autumn", "Summer", "Winter", "Spring"]},
+  {q: "What's Dae's zodiac sign?", a: "cancer", opts: ["cancer", "Leo", "Scorpio", "Gemini"]},
+  {q: "What's Dae's favorite holiday?", a: "Christmas", opts: ["Christmas", "Halloween", "Thanksgiving", "4th of July"]},
+  {q: "What's a weird habit Dae has?", a: "masterbaiting", opts: ["masterbaiting", "Biting nails", "Talking to self", "Cracking knuckles"]},
+  {q: "What's Dae's favorite animal?", a: "elephants", opts: ["elephants", "Lions", "Dogs", "Sloths"]},
+  {q: "What's Dae's go-to fast food?", a: "chickenfila", opts: ["chickenfila", "McDonalds", "Wendys", "Taco Bell"]},
+  {q: "What's Dae's favorite meme or inside joke?", a: "my bad og", opts: ["my bad og", "Doge", "This is fine", "Spongebob"]},
+  {q: "How tall is Dae?", a: "5’9", opts: ["5’9", "6’0", "5’7", "5’11"]},
+  {q: "What's Dae's favorite school subject?", a: "math", opts: ["math", "History", "English", "Gym"]},
+  {q: "What's one place Dae wants to visit?", a: "any Western Africa beach", opts: ["any Western Africa beach", "Paris", "NYC", "Tokyo"]},
+  {q: "What's Dae's favorite snack?", a: "hot fries", opts: ["hot fries", "Doritos", "Skittles", "Popcorn"]},
+  {q: "What's Dae's biggest fear?", a: "hitting females", opts: ["hitting females", "Spiders", "Heights", "Failure"]},
+  {q: "What's a celebrity Dae crushes on?", a: "non", opts: ["non", "Rihanna", "Zendaya", "Cardi B"]},
+  {q: "What's Dae's favorite app on his phone?", a: "X", opts: ["X", "Instagram", "TikTok", "Snapchat"]},
+  {q: "What's Dae's favorite emoji?", a: "😭", opts: ["😭", "😂", "🔥", "💀"]},
+  {q: "What's one skill Dae's proud of?", a: "coding", opts: ["coding", "Basketball", "Cooking", "Dancing"]},
+  {q: "What's Dae's favorite way to relax?", a: "masterbaiting", opts: ["masterbaiting", "Gaming", "Music", "Sleep"]},
+  {q: "What's a nickname people call Dae?", a: "dae", opts: ["dae", "Big D", "King", "Bro"]},
+  {q: "What's Dae's favorite ice cream flavor?", a: "Oreo", opts: ["Oreo", "Chocolate", "Vanilla", "Strawberry"]},
+  {q: "What's one goal Dae has for next year?", a: "get more money", opts: ["get more money", "Travel", "Get fit", "Learn guitar"]},
+  {q: "What's Dae's favorite book?", a: "if only I had told her", opts: ["if only I had told her", "Atomic Habits", "Rich Dad", "The Alchemist"]},
+  {q: "What's something Dae's really good at?", a: "self sabotaging", opts: ["self sabotaging", "Gaming", "Math", "Talking"]},
+  {q: "What's Dae's favorite outfit style?", a: "lazy sweat pants n crocs", opts: ["lazy sweat pants n crocs", "Streetwear", "Suits", "Athletic"]},
+  {q: "What's one thing that always makes Dae laugh?", a: "that one YouTube video", opts: ["that one YouTube video", "Memes", "Friends", "Standup"]},
+  {q: "What's Dae's favorite time of day?", a: "nights", opts: ["nights", "Morning", "Afternoon", "Evening"]},
+  {q: "What's a talent Dae has?", a: "Clitorovaginal Neuropleasure Specialist", opts: ["Clitorovaginal Neuropleasure Specialist", "Coding", "Basketball", "Drawing"]},
+  {q: "What's Dae's dream car?", a: "bmw", opts: ["bmw", "Lamborghini", "Tesla", "Mustang"]},
+  {q: "What's something Dae hates doing?", a: "helping people when they don’t try they self first", opts: ["helping people when they don’t try they self first", "Cleaning", "Waking up early", "Math"]},
+  {q: "What's Dae's favorite social media?", a: "instagram", opts: ["instagram", "X", "TikTok", "Snap"]},
+  {q: "What's one fact about Dae's family?", a: "im the first person with a diploma in my family", opts: ["im the first person with a diploma in my family", "Big family", "Only child", "Has 5 siblings"]},
+  {q: "What's Dae's favorite memory from childhood?", a: "8th grade year", opts: ["8th grade year", "First bike", "Family trips", "Sports"]},
+  {q: "What's Dae's spirit animal?", a: "sloth", opts: ["sloth", "Lion", "Wolf", "Eagle"]},
+  {q: "What's one thing Dae's surprisingly bad at?", a: "reading the room", opts: ["reading the room", "Math", "Sports", "Cooking"]},
+  {q: "What's Dae's favorite quote or motto?", a: "horses don’t stop they keep going", opts: ["horses don’t stop they keep going", "Stay hungry", "Hustle", "No pain no gain"]},
+  {q: "What's the one question everyone always asks Dae?", a: "are you slow", opts: ["are you slow", "How old are you", "Where you from", "You good?"]}
 ];
 
-let currentQuestions=[],currentIndex=0,score=0,musicPlaying=false;
-const audio=document.getElementById('bg-music');
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let musicPlaying = true;
+const audio = document.getElementById('bg-music');
 
-function createParticles(){const c=document.getElementById('particles');for(let i=0;i<80;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(Math.random()*8+7)+'s';p.style.animationDelay='-'+Math.random()*15+'s';c.appendChild(p);}}
-
-function toggleMusic(){if(musicPlaying){audio.pause();document.getElementById('music-btn').textContent='🔊 MUSIC'}else{audio.play().catch(()=>{});document.getElementById('music-btn').textContent='⏸️ PAUSE'} musicPlaying=!musicPlaying;}
-
-function startQuiz(){
-  document.getElementById('start-screen').classList.add('hidden');
-  document.getElementById('quiz-screen').classList.remove('hidden');
-  if(!musicPlaying) toggleMusic();
-  currentQuestions=[...allQuestions].sort(()=>0.5-Math.random()).slice(0,15);
-  currentIndex=0;score=0;showQuestion();
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 80; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (Math.random() * 8 + 7) + 's';
+    p.style.animationDelay = '-' + Math.random() * 15 + 's';
+    container.appendChild(p);
+  }
 }
 
-function showQuestion(){
-  const q=currentQuestions[currentIndex];
-  document.getElementById('q-num').textContent=currentIndex+1;
-  document.getElementById('question-text').innerHTML=q.q.replace(/dae/gi,'<span class="glow-cyan">dae</span>');
-  const optsDiv=document.getElementById('options');optsDiv.innerHTML='';
-  const shuffled=[...q.opts].sort(()=>0.5-Math.random());
-  shuffled.forEach(opt=>{
-    const btn=document.createElement('button');
-    btn.className=`w-full text-left p-6 rounded-2xl border border-cyan-500/30 hover:border-cyan-400 hover:bg-zinc-900 transition-all text-lg`;
-    btn.textContent=opt;
-    btn.onclick=()=>selectAnswer(opt,q.a);
+function toggleMusic() {
+  if (musicPlaying) {
+    audio.pause();
+    document.getElementById('music-btn').textContent = '🔊 MUSIC';
+  } else {
+    audio.play().catch(() => {});
+    document.getElementById('music-btn').textContent = '⏸️ PAUSE';
+  }
+  musicPlaying = !musicPlaying;
+}
+
+function startQuiz() {
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('quiz-screen').classList.remove('hidden');
+  audio.play().catch(() => {});
+  currentQuestions = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 15);
+  currentIndex = 0;
+  score = 0;
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = currentQuestions[currentIndex];
+  document.getElementById('q-num').textContent = currentIndex + 1;
+  document.getElementById('question-text').innerHTML = q.q.replace(/dae/gi, '<span class="glow-cyan">dae</span>');
+  const optsDiv = document.getElementById('options');
+  optsDiv.innerHTML = '';
+  const shuffled = [...q.opts].sort(() => 0.5 - Math.random());
+  shuffled.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = `w-full text-left p-6 rounded-2xl border border-cyan-500/30 hover:border-cyan-400 hover:bg-zinc-900 transition-all text-lg`;
+    btn.textContent = opt;
+    btn.onclick = () => selectAnswer(opt, q.a);
     optsDiv.appendChild(btn);
   });
 }
 
-function selectAnswer(selected,correct){
-  if(selected===correct)score++;
-  const fb=document.getElementById('feedback');
-  fb.innerHTML=selected===correct?`<span class="text-green-400">✅ You know dae fr</span>`:`<span class="text-red-400">❌ Wrong. It's <span class="glow-cyan">${correct}</span></span>`;
-  setTimeout(()=>{currentIndex++;if(currentIndex<currentQuestions.length){showQuestion();fb.innerHTML=''}else{showResults()}},1600);
+function selectAnswer(selected, correct) {
+  if (selected === correct) score++;
+  const fb = document.getElementById('feedback');
+  fb.innerHTML = selected === correct ? 
+    `<span class="text-green-400">✅ You know dae fr</span>` : 
+    `<span class="text-red-400">❌ Wrong. It's <span class="glow-cyan">${correct}</span></span>`;
+  setTimeout(() => {
+    currentIndex++;
+    if (currentIndex < currentQuestions.length) {
+      showQuestion();
+      fb.innerHTML = '';
+    } else {
+      showResults();
+    }
+  }, 1600);
 }
 
-function showResults(){
+function showResults() {
   document.getElementById('quiz-screen').classList.add('hidden');
-  const res=document.getElementById('results-screen');res.classList.remove('hidden');
-  const percent=Math.round((score/15)*100);
-  document.getElementById('score').textContent=percent+"%";
-  let msg=percent>=80?"You really know this nigga... that's love fr":percent>=60?"Aight you know some shit about dae":percent>=40?"Mid. Study up on dae":"You don't know dae at all nigga 😂 Go touch grass";
-  document.getElementById('message').textContent=msg;
+  const res = document.getElementById('results-screen');
+  res.classList.remove('hidden');
+  const percent = Math.round((score / 15) * 100);
+  document.getElementById('score').textContent = percent + "%";
+  let msg = percent >= 80 ? "You really know this nigga... that's love fr" :
+            percent >= 60 ? "Aight you know some shit about dae" :
+            percent >= 40 ? "Mid. Study up on dae" : "You don't know dae at all nigga 😂 Go touch grass";
+  document.getElementById('message').textContent = msg;
 }
 
-function restartQuiz(){document.getElementById('results-screen').classList.add('hidden');document.getElementById('start-screen').classList.remove('hidden');}
-function endQuiz(){showResults();}
+function restartQuiz() {
+  document.getElementById('results-screen').classList.add('hidden');
+  document.getElementById('start-screen').classList.remove('hidden');
+}
 
-window.onload=()=>{createParticles();};
+function endQuiz() {
+  showResults();
+}
+
+window.onload = () => {
+  createParticles();
+};
 </script>
 </body>
 </html>
