@@ -6,8 +6,18 @@
   <title>Do You Know Dae?</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-    body { font-family: 'Press Start 2P', system-ui; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@500;600&display=swap');
+
+body { 
+  font-family: 'Inter', system-ui; 
+  font-feature-settings: "kern";
+}
+    h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+Where do I put this in the coding?
     .glow-cyan { text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; color: #00ffff; }
     .particle { position: absolute; width: 5px; height: 5px; background: #00ffff; border-radius: 50%; box-shadow: 0 0 8px #00ffff; animation: float 10s infinite linear; }
     @keyframes float { 0% { transform: translateY(120vh) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(-100vh) rotate(1080deg); opacity: 0; } }
