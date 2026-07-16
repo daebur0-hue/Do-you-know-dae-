@@ -136,12 +136,14 @@ function toggleMusic() {
 function startQuiz() {
   document.getElementById('start-screen').classList.add('hidden');
   document.getElementById('quiz-screen').classList.remove('hidden');
+  audio.currentTime = 0; // start from beginning
   audio.play().catch(() => {});
   currentQuestions = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 15);
   currentIndex = 0;
   score = 0;
   showQuestion();
 }
+
 
 function showQuestion() {
   const q = currentQuestions[currentIndex];
